@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Klasemen Liga</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="matches.html">Match</a></li>
+    <li><a href="standings.html">Klasemen</a></li>
+    <li><a href="teams.html">Team</a></li>
+  </ul>
+  <button class="logout-btn">Log Out</button>
+</nav>
+
+<div class="video-container">
+  <div class="intro-container">
+    <div class="intro-text">
+      <h1>Selamat Datang di Liga Premier</h1>
+      <p>Menyajikan informasi terkini seputar pertandingan, klasemen, dan tim-tim favorit Anda.</p>
+    </div>
+    <img src="highlight.jpeg" alt="Premier League Highlight" class="intro-image">
+  </div>
+
+  <iframe width="100%" height="850" src="https://www.youtube.com/embed/93b5AHi6i0Q?autoplay=1" frameborder="0" allow='autoplay; encrypted-media' allowfullscreen></iframe>
+</div>
+
+<footer>
+  <p>&copy; 2023 Muhammad Rizky Sandyra & Rayhan Ahadi.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Tambahkan event listener pada event load untuk menyesuaikan dengan animasi CSS
+  window.addEventListener('load', () => {
+    const videoContainer = document.querySelector('.video-container');
+    videoContainer.style.opacity = 1; // Atur opasitas menjadi 1 setelah animasi selesai
+  });
+  
+  const logoutBtn = document.querySelector('.logout-btn');
+
+  logoutBtn.addEventListener('click', () => {
+    fetch('/logout', {
+      method: 'POST'
+    })
+    .then(response => {
+      if (response.redirected) {
+        window.location.href = response.url;
+      }
+    })
+    .catch(error => {
+      console.error('Error logging out:', error);
+    });
+  });
+</script>
+
+</body>
+</html>
